@@ -15,5 +15,12 @@ describe "CSV interactor" do
       all_posts = CSVInteractor.all_posts
       all_posts.first.title.should_equal "Post 1"
     end
+
+    it "loads description" do
+      post = Post.new(title: "Post 1", description: "Description of post 1")
+      CSVInteractor.save_post post
+      all_posts = CSVInteractor.all_posts
+      all_posts.first.description.should_equal "Description of post 1"
+    end
   end
 end
