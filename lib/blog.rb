@@ -4,4 +4,8 @@ class Blog
     @name = args[:name]
     @posts = []
   end
+
+  def add_post args
+    @posts << Post.new(args)
+  end
 end
