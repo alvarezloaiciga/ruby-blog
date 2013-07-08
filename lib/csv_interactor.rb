@@ -8,6 +8,6 @@ class CSVInteractor
 
   def self.all_posts
     posts = CSV.read("lib/posts.csv")
-    posts.map{|post_attr| Post.new(title: post_attr[0])}
+    posts.map{|post_attr| Post.new(title: post_attr[0], description: post_attr[1])}
   end
 end
