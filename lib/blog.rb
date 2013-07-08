@@ -1,6 +1,7 @@
 class Blog
-  attr_reader :name
+  attr_reader :name, :posts
   def initialize args
     @name = args[:name]
+    @posts = []
   end
 end
