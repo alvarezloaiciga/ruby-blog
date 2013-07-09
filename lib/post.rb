@@ -1,6 +1,7 @@
 class Post
   attr_reader :title, :description, :id
   def initialize(args={})
+    @id = args[:id]
     @title = args[:title]
     @description = args[:description]
   end
