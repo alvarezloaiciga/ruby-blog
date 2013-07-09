@@ -40,5 +40,14 @@ describe "CSV interactor" do
 
       File.delete('lib/posts.csv')
     end
+
+    it "loads id" do
+      post = Post.new(title: "Post 1", description: "Description of post 1")
+      CSVInteractor.save_post post
+      all_posts = CSVInteractor.all_posts
+      all_posts.first.id.should_equal 1
+
+      File.delete('lib/posts.csv')
+    end
   end
 end
