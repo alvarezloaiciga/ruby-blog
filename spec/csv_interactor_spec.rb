@@ -27,7 +27,7 @@ describe "CSV interactor" do
       post = Post.new(title: "Post 1", description: "Description of post 1")
       CSVInteractor.save_post post
       all_posts = CSVInteractor.all_posts
-      all_posts.first.title.should_equal "Post 1"
+      all_posts.first.title.should_equal post.title
 
       File.delete('lib/posts.csv')
     end
@@ -36,7 +36,7 @@ describe "CSV interactor" do
       post = Post.new(title: "Post 1", description: "Description of post 1")
       CSVInteractor.save_post post
       all_posts = CSVInteractor.all_posts
-      all_posts.first.description.should_equal "Description of post 1"
+      all_posts.first.description.should_equal post.description
 
       File.delete('lib/posts.csv')
     end
@@ -45,7 +45,7 @@ describe "CSV interactor" do
       post = Post.new(title: "Post 1", description: "Description of post 1")
       CSVInteractor.save_post post
       all_posts = CSVInteractor.all_posts
-      all_posts.first.id.should_equal 1
+      all_posts.first.id.should_equal post.id
 
       File.delete('lib/posts.csv')
     end
