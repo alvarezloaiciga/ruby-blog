@@ -1,6 +1,11 @@
 require_relative 'spec_helper'
 
 describe "Post" do
+  it "has an id" do
+    post = Post.new
+    post.id.should_be_nil
+  end
+
   it "has a title" do
     title = "First post"
     post = Post.new(title: title)
