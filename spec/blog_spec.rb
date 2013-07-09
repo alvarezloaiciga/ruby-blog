@@ -40,5 +40,14 @@ describe "blog" do
       blog.posts.should_equal []
       File.delete('lib/posts.csv')
     end
+
+    it "removes it from all posts" do
+      blog = Blog.new
+      blog.add_post(title: "First post in blog", description: "This is a magical post")
+      post = blog.posts.first
+      blog.remove_post post.id
+      CSVInteractor.all_posts.should_equal []
+      File.delete('lib/posts.csv')
+    end
   end
 end
