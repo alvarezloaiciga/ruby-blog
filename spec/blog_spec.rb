@@ -30,4 +30,15 @@ describe "blog" do
       File.delete('lib/posts.csv')
     end
   end
+
+  describe ".remove_post" do
+    it "removes the posts from the blog" do
+      blog = Blog.new
+      blog.add_post(title: "First post in blog", description: "This is a magical post")
+      post = blog.posts.first
+      blog.remove_post post.id
+      blog.posts.should_equal []
+      File.delete('lib/posts.csv')
+    end
+  end
 end
