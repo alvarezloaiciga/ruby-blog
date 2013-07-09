@@ -9,4 +9,8 @@ class Blog
     CSVInteractor.save_post post
     @posts << post
   end
+
+  def remove_post post_id
+    self.posts.delete_if{|post| post.id == post_id}
+  end
 end
