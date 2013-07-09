@@ -4,4 +4,9 @@ class Post
     @title = args[:title]
     @description = args[:description]
   end
+
+  private
+  def id= id
+    @id = id
+  end
 end
