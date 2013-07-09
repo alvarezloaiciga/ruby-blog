@@ -7,22 +7,27 @@ describe "blog" do
   end
 
   describe ".add_post" do
+    File.delete('lib/posts.csv') if File.exist?('lib/posts.csv')
+
     it "adds title" do
       blog = Blog.new
       blog.add_post(title: "First post in blog", description: "This is a magical post")
       blog.posts.first.title.should_equal "First post in blog"
+      File.delete('lib/posts.csv')
     end
 
     it "adds description" do
       blog = Blog.new
       blog.add_post(title: "First post in blog", description: "This is a magical post")
       blog.posts.first.description.should_equal "This is a magical post"
+      File.delete('lib/posts.csv')
     end
 
     it "adds id" do
       blog = Blog.new
       blog.add_post(title: "First post in blog", description: "This is a magical post")
       blog.posts.first.id.should_equal 1
+      File.delete('lib/posts.csv')
     end
   end
 end

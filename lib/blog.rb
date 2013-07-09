@@ -5,6 +5,8 @@ class Blog
   end
 
   def add_post args
-    @posts << Post.new(args)
+    post = Post.new(args)
+    CSVInteractor.save_post post
+    @posts << post
   end
 end
