@@ -4,6 +4,7 @@ class Post
     @id = args[:id]
     @title = args[:title]
     @description = args[:description]
+    @blog_id = args[:blog_id]
   end
 
   private
