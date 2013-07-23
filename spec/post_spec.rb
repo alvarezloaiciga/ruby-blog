@@ -7,6 +7,11 @@ describe "Post" do
     post.id.should_be_nil
   end
 
+  it "has a blog id" do
+    post = Post.new
+    post.blog_id.should_be_nil
+  end
+
   it "has a title" do
     post = Post.new(title: POST_TITLE)
     post.title.should_equal POST_TITLE
