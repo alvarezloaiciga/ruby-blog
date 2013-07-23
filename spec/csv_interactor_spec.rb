@@ -14,10 +14,11 @@ describe "CSV interactor" do
     end
 
     it "saves a post" do
+      blog = Blog.new
       post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
-      CSVInteractor.save_post post
+      CSVInteractor.save_post post, blog
       all_posts = CSV.read("lib/posts.csv")
-      all_posts.first.should_equal ["1",POST_TITLE, POST_DESCRIPTION]
+      all_posts.first.should_equal ["1",POST_TITLE, POST_DESCRIPTION, blog.id.to_s]
 
       File.delete('lib/posts.csv')
     end
