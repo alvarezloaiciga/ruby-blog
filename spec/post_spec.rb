@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require_relative 'constants'
 
 describe "Post" do
   it "has an id" do
@@ -7,14 +8,12 @@ describe "Post" do
   end
 
   it "has a title" do
-    title = "First post"
-    post = Post.new(title: title)
-    post.title.should_equal title
+    post = Post.new(title: POST_TITLE)
+    post.title.should_equal POST_TITLE
   end
 
   it "has a description" do
-    description = "This is my first post!"
-    post = Post.new(description: description)
-    post.description.should_equal description
+    post = Post.new(description: POST_DESCRIPTION)
+    post.description.should_equal POST_DESCRIPTION
   end
 end
