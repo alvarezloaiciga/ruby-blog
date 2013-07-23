@@ -11,4 +11,8 @@ class Post
   def id= id
     @id = id
   end
+
+  def blog_id= id
+    @blog_id = id
+  end
 end

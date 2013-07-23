@@ -3,6 +3,7 @@ class CSVInteractor
   def self.save_post post, blog
     CSV.open("lib/posts.csv", "ab") do |csv|
       post.send(:id=, next_id)
+      post.send(:blog_id=, blog.id)
       csv << [post.id, post.title,post.description, blog.id]
     end
     post
