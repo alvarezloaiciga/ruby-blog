@@ -8,8 +8,8 @@ describe "Post" do
   end
 
   it "has a blog id" do
-    post = Post.new
-    post.blog_id.should_be_nil
+    post = Post.new(blog_id: BLOG_ID)
+    post.blog_id.should_equal BLOG_ID
   end
 
   it "has a title" do
