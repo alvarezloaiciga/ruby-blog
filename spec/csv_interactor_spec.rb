@@ -6,8 +6,9 @@ describe "CSV interactor" do
 
   describe "saves a post" do
     it "assigns an id to the post" do
+      blog = Blog.new
       post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
-      post = CSVInteractor.save_post post
+      post = CSVInteractor.save_post post, blog
       post.id.should_equal 1
 
       File.delete('lib/posts.csv')
@@ -26,8 +27,9 @@ describe "CSV interactor" do
 
   describe "all posts" do
     it "loads title" do
+      blog = Blog.new
       post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
-      CSVInteractor.save_post post
+      CSVInteractor.save_post post, blog
       all_posts = CSVInteractor.all_posts
       all_posts.first.title.should_equal post.title
 
@@ -35,8 +37,9 @@ describe "CSV interactor" do
     end
 
     it "loads description" do
+      blog = Blog.new
       post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
-      CSVInteractor.save_post post
+      CSVInteractor.save_post post, blog
       all_posts = CSVInteractor.all_posts
       all_posts.first.description.should_equal post.description
 
@@ -44,8 +47,9 @@ describe "CSV interactor" do
     end
 
     it "loads id" do
+      blog = Blog.new
       post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
-      CSVInteractor.save_post post
+      CSVInteractor.save_post post, blog
       all_posts = CSVInteractor.all_posts
       all_posts.first.id.should_equal post.id
 
