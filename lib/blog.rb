@@ -22,7 +22,7 @@ class Blog
 
   def add_post args
     post = Post.new(args)
-    CSVInteractor.save_post post
+    CSVInteractor.save_post post, self
     @posts << post
   end
 
