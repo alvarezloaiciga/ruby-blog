@@ -61,6 +61,13 @@ describe "blog" do
       blog.posts.first.id.should_equal 1
       File.delete('lib/posts.csv')
     end
+
+    it "adds the blog id" do
+      blog = Blog.new
+      blog.add_post(title: POST_TITLE, description: POST_DESCRIPTION)
+      blog.posts.first.blog_id.should_equal blog.id
+      File.delete('lib/posts.csv')
+    end
   end
 
   describe ".remove_post" do
