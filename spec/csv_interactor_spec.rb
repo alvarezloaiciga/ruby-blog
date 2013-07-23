@@ -14,6 +14,15 @@ describe "CSV interactor" do
       File.delete('lib/posts.csv')
     end
 
+    it "assings a blog id to the post" do
+      blog = Blog.new
+      post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
+      post = CSVInteractor.save_post post, blog
+      post.blog_id.should_equal blog.id
+
+      File.delete('lib/posts.csv')
+    end
+
     it "saves a post" do
       blog = Blog.new
       post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
