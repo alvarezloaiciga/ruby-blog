@@ -1,9 +1,10 @@
 require 'csv'
 class CSVInteractor
-  def self.save_post post
+  def self.save_post post, blog=nil
     CSV.open("lib/posts.csv", "ab") do |csv|
       post.send(:id=, next_id)
-      csv << [post.id, post.title,post.description]
+      blog_id = blog ? blog.id : 0
+      csv << [post.id, post.title,post.description, blog_id]
     end
     post
   end
