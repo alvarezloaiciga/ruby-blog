@@ -75,4 +75,17 @@ describe "CSV interactor" do
       File.delete('lib/posts.csv')
     end
   end
+
+  describe "delete post" do
+    it "adds the deleted cell to the post row" do
+      blog = Blog.new
+      post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
+      CSVInteractor.save_post post, blog
+      CSVInteractor.delete_post post
+      posts = CSV.read("lib/posts.csv", headers: [:id, :title, :description, :blog_id, :deleted])
+      posts[post.id-1][:deleted].should_equal "deleted"
+
+      File.delete('lib/posts.csv')
+    end
+  end
 end
