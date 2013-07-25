@@ -10,18 +10,20 @@ class CSVInteractor
   end
 
   def self.all_posts
-    posts = CSV.read("lib/posts.csv", headers: [:id, :title, :description, :blog_id, :deleted])
-    posts.map{|post_attr| Post.new(id:post_attr[:id].to_i,
-                                   title: post_attr[:title],
-                                   description: post_attr[:description],
-                                   blog_id: post_attr[:blog_id].to_i)}
+    posts = read_file
+    posts.select{|post| post[:deleted].nil? }.map do |post_attr|
+      Post.new(id:post_attr[:id].to_i,
+               title: post_attr[:title],
+               description: post_attr[:description],
+               blog_id: post_attr[:blog_id].to_i)
+    end
   end
 
   def self.delete_post post
-    posts = CSV.read("lib/posts.csv", headers: [:id, :title, :description, :blog_id, :deleted])
+    posts = read_file
     posts[post.id-1][:deleted] = "deleted"
     CSV.open('lib/posts.csv', "wb") do |csv|
-      csv << posts.collect{|post| [post[:id], post[:title], post[:description], post[:blog_id], post[:deleted]]}.flatten
+      posts.collect(&:fields).each{|post_row| csv << post_row}
     end
   end
 
@@ -32,6 +34,10 @@ class CSVInteractor
     rescue
       return 1
     end
+  end
+
+  def self.read_file
+    CSV.read("lib/posts.csv", headers: [:id, :title, :description, :blog_id, :deleted])
   end
 
 end
