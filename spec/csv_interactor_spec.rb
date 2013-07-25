@@ -74,6 +74,19 @@ describe "CSV interactor" do
 
       File.delete('lib/posts.csv')
     end
+
+    it "doesn't load the deleted blogs" do
+      blog = Blog.new
+      post = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
+      post2 = Post.new(title: POST_TITLE, description: POST_DESCRIPTION)
+      CSVInteractor.save_post post, blog
+      CSVInteractor.save_post post2, blog
+      CSVInteractor.delete_post post
+      all_posts = CSVInteractor.all_posts
+      all_posts.first.id.should_equal post2.id
+
+      File.delete('lib/posts.csv')
+    end
   end
 
   describe "delete post" do
