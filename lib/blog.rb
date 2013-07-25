@@ -27,6 +27,8 @@ class Blog
   end
 
   def remove_post post_id
-   self.posts.delete_if{|post| post.id == post_id}
+    post = posts.find{|p| p.id == post_id}
+    posts.delete(post)
+    CSVInteractor.delete_post post
   end
 end
