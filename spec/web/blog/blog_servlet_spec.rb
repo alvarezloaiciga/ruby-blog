@@ -14,7 +14,5 @@ describe "Blog Servlet" do
       response.strip.should_equal "<p>#{POST_TITLE}</p>\n\n<p>#{POST_TITLE_2}</p>"
       stop_test_server
     end
-
-    it "renders the template with all posts"
   end
 end
