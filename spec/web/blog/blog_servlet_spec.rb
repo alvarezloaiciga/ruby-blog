@@ -11,8 +11,7 @@ describe "Blog Servlet" do
       blog.add_post(title: POST_TITLE, description: POST_DESCRIPTION)
       blog.add_post(title: POST_TITLE_2, description: POST_DESCRIPTION_2)
       response = Net::HTTP.get('localhost', "/blog?id=#{blog.id}", 3000)
-      response.strip.should_equal "<p>#{POST_TITLE}</p>\n\n<p>#{POST_TITLE_2}</p>"
-
+      response.strip.should_equal "<a href=\"posts?id=#{blog.posts[0].id}\">#{POST_TITLE}</a>\n\n<a href=\"posts?id=#{blog.posts[1].id}\">#{POST_TITLE_2}</a>"
       stop_test_server
       File.delete('lib/posts.csv')
     end
