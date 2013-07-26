@@ -1,4 +1,5 @@
 require 'webrick'
+require_relative 'blog/blog_servlet'
 class Server
   include WEBrick
 
