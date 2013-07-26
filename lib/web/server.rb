@@ -1,5 +1,6 @@
 require 'webrick'
 require_relative 'blog/blog_servlet'
+require_relative 'blog/post_servlet'
 class Server
   include WEBrick
 
@@ -9,6 +10,7 @@ class Server
       :DocumentRoot => Dir::pwd + "/lib/web/"
     )
     @@s.mount '/blog', BlogServlet
+    @@s.mount '/posts', PostServlet
     @@s.start
   end
 
