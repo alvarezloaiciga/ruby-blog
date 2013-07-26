@@ -26,8 +26,12 @@ class Blog
     @posts << post
   end
 
+  def find_post post_id
+    posts.find{|p| p.id == post_id}
+  end
+
   def remove_post post_id
-    post = posts.find{|p| p.id == post_id}
+    post = find_post post_id
     posts.delete(post)
     CSVInteractor.delete_post post
   end
