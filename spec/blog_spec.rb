@@ -70,6 +70,15 @@ describe "blog" do
     end
   end
 
+  describe ".find_post" do
+    it "returns the post that has the given id" do
+      blog = Blog.new
+      blog.add_post(title: POST_TITLE, description: POST_DESCRIPTION)
+      post = blog.find_post(blog.posts.first.id)
+      post.should_equal blog.posts.first
+    end
+  end
+
   describe ".remove_post" do
     it "removes the posts from the blog" do
       blog = Blog.new
