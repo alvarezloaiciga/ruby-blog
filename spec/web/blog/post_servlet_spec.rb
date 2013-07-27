@@ -22,6 +22,14 @@ describe "Post Servlet" do
       Net::HTTP.post_form(uri, {"blog_id" => blog.id, title: POST_TITLE, description: POST_DESCRIPTION})
       blog.posts.count.should_equal 1
     end
+
+    it "redirects to the list of posts" do
+      blog = Blog.new
+      uri = URI.parse('http://localhost:3000/posts')
+      response = Net::HTTP.post_form(uri, {"blog_id" => blog.id, title: POST_TITLE, description: POST_DESCRIPTION})
+      response.code.should_equal "303"
+    end
   end
+
   stop_test_server
 end
