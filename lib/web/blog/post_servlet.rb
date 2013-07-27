@@ -12,4 +12,10 @@ class PostServlet < HTTPServlet::AbstractServlet
     response.body = @template.result(binding)
     response['Content-Type'] = "text/html"
   end
+
+  def do_POST request, response
+    blog = Blog.find(request.query["blog_id"].to_i)
+    blog.add_post(title: request.query["title"],
+                 description: request.query["description"])
+  end
 end
