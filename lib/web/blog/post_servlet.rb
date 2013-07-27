@@ -17,5 +17,6 @@ class PostServlet < HTTPServlet::AbstractServlet
     blog = Blog.find(request.query["blog_id"].to_i)
     blog.add_post(title: request.query["title"],
                  description: request.query["description"])
+    response.set_redirect(WEBrick::HTTPStatus[303], "/blog?id=#{blog.id}")
   end
 end
